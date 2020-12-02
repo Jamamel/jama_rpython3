@@ -1,20 +1,22 @@
-FROM debian:buster
+FROM jamamel/jama_r-base:3.6.3
 
-ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV PATH /opt/conda/bin:$PATH
+RUN apt-get update && apt-get install -y \
+    libv8-dev \
+    libudunits2-dev \ 
+    liblzma-dev \
+    libbz2-dev \
+    libmariadb-dev \
+    git-all \
+    libpoppler-cpp-dev \
+    python3-dev \
+    python3-pip
 
-RUN apt-get update --fix-missing && \
-    apt-get install -y wget bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 git mercurial subversion && \
-    apt-get clean
+RUN pip3 install --upgrade pip
 
-RUN wget --quiet https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh -O ~/anaconda.sh && \
-    /bin/bash ~/anaconda.sh -b -p /opt/conda && \
-    rm ~/anaconda.sh && \
-    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc && \
-    find /opt/conda/ -follow -type f -name '*.a' -delete && \
-    find /opt/conda/ -follow -type f -name '*.js.map' -delete && \
-    /opt/conda/bin/conda clean -afy
+RUN pip3 install -U virtualenv && \ 
+    pip3 install -U numpy && \
+    pip3 install -U cython && \
+    pip3 install -U spacy 
+RUN python3 -m spacy download en_core_web_sm && python3 -m spacy download es_core_news_sm
 
 CMD [ "/bin/bash" ]
