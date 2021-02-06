@@ -3,7 +3,7 @@
 **Note**: See the Jamamel/jama_r-base repo for more details.
 
 
-# Using the jamamel/jama_r-base container
+# Using the jamamel/jama_rpython3 container
 
 
 ## Quickstart
