@@ -20,7 +20,7 @@
 
 Link a local volume (in this example, the current working directory, `$(pwd)`) to the rstudio container:
 
-    docker run -it -v $(pwd):/home/rstudio --name r_python3 jamamel/jama_rpython3:3.6.3.
+    docker run -it -v $(pwd):/home/Documents --name r_python3 jamamel/jama_rpython3:3.6.3.
 
 
 #### Access a root shell for a running `jama_rpython3` container instance
