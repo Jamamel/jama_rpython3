@@ -1,10 +1,8 @@
 FROM jamamel/jama_r-base:3.6.3
 
 RUN apt-get update && apt-get install -y \
-    libv8-dev \
     libudunits2-dev \ 
     liblzma-dev \
-    libbz2-dev \
     libmariadb-dev \
     git-all \
     libpoppler-cpp-dev \
